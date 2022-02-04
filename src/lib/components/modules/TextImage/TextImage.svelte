@@ -1,4 +1,6 @@
 <script>
+	import Image from "$lib/components/partials/Image/Image.svelte";
+
 	export let title;
 	export let content;
 	export let image;
@@ -9,4 +11,7 @@
 	<div class="richtext">
 		{@html content}
 	</div>
+	{#if image}
+		<Image {...image} ratio={`${image.width}:${image.height}`}/>
+	{/if}
 </section>

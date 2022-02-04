@@ -1,0 +1,38 @@
+.Image {
+	display: block;
+	margin: 0;
+	padding: 0;
+	background-size: cover;
+	background-color: #e1e1e1;
+
+	@supports (--custom:property) {
+		&[style*="--aspect-ratio"] {
+			position: relative;
+		}
+
+		&[style*="--aspect-ratio"]:before {
+			content: "";
+			display: block;
+			padding-bottom: calc(100% / (var(--aspect-ratio)));
+		}
+
+		&[style*="--aspect-ratio"] .Image__img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+		}
+	}
+}
+
+.Image__img {
+	display: block;
+	width: 100%;
+	height: auto;
+	opacity: 0;
+	transition: opacity 0.3s ease-out;
+
+	.Image--loaded & {
+		opacity: 1;
+	}
+}
