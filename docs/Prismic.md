@@ -16,3 +16,8 @@ in Prismic: https://prismic.io/docs/core-concepts#content-modeling
 
 ## Previewing locally
 
+In the Settings of the prismic repo, navigate to "Previews" and create a new preview setting like shown in this
+Screenshot:
+
+![Local Preview Settings](./assets/create-preview.png)
+

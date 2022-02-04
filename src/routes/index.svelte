@@ -1,10 +1,5 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Welcome to mutoco Prismic starter</h1>
 
-<a href="about">About page</a>
+<a href="/about">About page</a>
 
-<script context="module">
-	export async function load() {
-		return {}
-	}
-</script>
+

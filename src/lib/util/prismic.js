@@ -5,12 +5,16 @@ import {asHTML, asText} from "@prismicio/helpers";
 import {browser, dev} from "$app/env";
 
 export const previewSessionCookie = "io.prismic.preview";
-export const refSessionCookie = "io.prismic.ref";
 
+/**
+ * Resolve a doc to a link. Check doc.type and return the appropriate route
+ * @param doc
+ * @returns {string}
+ */
 export const linkResolver = doc => {
 	switch (doc.type) {
 		case 'page':
-			return `/page/${doc.uid}`;
+			return `/${doc.uid}`;
 	}
 
 	return `/${doc.uid || ''}`;
@@ -63,6 +67,14 @@ const transformBlocks = async (blocks, fetch) => {
 	}))
 }
 
+/**
+ * Perform a prismic query and transform the result-data
+ * @param query - the graphql query
+ * @param fetch - the current fetch instance
+ * @param ref - the current prismic ref
+ * @param variables - variables for the graphql query
+ * @returns {Promise<unknown[]|{render}|*|{}>}
+ */
 export const prismicQuery = async ({query, fetch, ref, variables = {}}) => {
 	const client = new GraphQLClient(env.graphQlApi, {
 		fetch,

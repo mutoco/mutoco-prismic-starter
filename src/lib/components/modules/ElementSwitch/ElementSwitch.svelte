@@ -3,9 +3,7 @@
 </script>
 
 {#key elements}
-	{#each elements as elem}
-		{#if elem?._module?.default}
-			<svelte:component this={elem._module.default} {...elem.props}/>
-		{/if}
+	{#each elements.filter(elem => !!elem?._module?.default) as elem}
+		<svelte:component this={elem._module.default} {...elem.props}/>
 	{/each}
 {/key}

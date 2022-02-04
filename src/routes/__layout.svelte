@@ -26,3 +26,28 @@
 		<PreviewTag/>
 	{/if}
 </main>
+
+<script context="module">
+	import {env} from "$lib/util/env.js";
+
+	// This loads the current prismic ref and exposes it via the `stuff` prop for all routes.
+	// See the docs for an explanation of `stuff`: https://kit.svelte.dev/docs#loading-input-stuff
+	export async function load({ fetch, session }) {
+		let ref;
+		if (session && session.token) {
+			ref = session.token;
+		} else {
+			const response = await fetch(`https://${env.prismicRepo}.cdn.prismic.io/api/v2`);
+			const json = await response.json();
+
+			ref = json.refs.find(ref => ref.isMasterRef)?.ref;
+		}
+
+		return {
+			stuff: {
+				prismicRef: ref
+			}
+		}
+	}
+</script>
+
