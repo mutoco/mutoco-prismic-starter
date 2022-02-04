@@ -3,6 +3,7 @@ query getPage($uid:String!) {
 	page(uid:$uid, lang:"de-ch") {
 		title_txt:title
 		lead_html:lead
+		description_txt:lead
 		_blocks:body {
 			... on PageBodyText_image {
 				type

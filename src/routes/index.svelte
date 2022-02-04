@@ -1,6 +1,14 @@
 <script>
+	import MetaTags from "$lib/components/partials/MetaTags/MetaTags.svelte";
+
 	export let home;
 </script>
+
+<MetaTags
+	title={home.title}
+	description={home.description}
+	imageUrl={home?.image?.url}
+/>
 
 
 <h1>{home.title}</h1>

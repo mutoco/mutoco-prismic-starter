@@ -1,10 +1,17 @@
 <script>
 	import ElementSwitch from "$lib/components/modules/ElementSwitch/ElementSwitch.svelte";
+	import MetaTags from "$lib/components/partials/MetaTags/MetaTags.svelte";
 
 	export let page;
 </script>
 
 {#key page}
+	<MetaTags
+		title={page.title}
+		description={page.description}
+		imageUrl={page?.image?.url}
+	/>
+
 	{#if page}
 		<article>
 			<h1>{page.title}</h1>

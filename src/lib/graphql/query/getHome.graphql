@@ -6,6 +6,7 @@ query {
 			node {
 				title_txt:title
 				lead_html:lead
+				description_txt:lead
 				main_menu {
 					link {
 						...Link
