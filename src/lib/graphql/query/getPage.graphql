@@ -1,0 +1,17 @@
+# Query a page via the uid
+query getPage($uid:String!) {
+	page(uid:$uid, lang:"de-ch") {
+		title_txt:title
+		lead_html:lead
+		_blocks:body {
+			... on PageBodyText_image {
+				type
+				primary {
+					title_txt:title1
+					content_html:content
+					image_img:image
+				}
+			}
+		}
+	}
+}

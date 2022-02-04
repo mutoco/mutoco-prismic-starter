@@ -11,3 +11,10 @@ pull the current Schema:
 ```shell
 npm run grapqhl:pullSchema
 ```
+
+## Testing queries directly at Prismic
+
+To write GraphQL Queries interactively, you can also use the tool over at:
+https://mutoco-starter.prismic.io/graphql
+
+(make sure to replace `mutoco-starter` with your repository name)

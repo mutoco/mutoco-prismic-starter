@@ -5,11 +5,12 @@ import {asHTML, asText} from "@prismicio/helpers";
 import {browser, dev} from "$app/env";
 
 export const previewSessionCookie = "io.prismic.preview";
+export const refSessionCookie = "io.prismic.ref";
 
 export const linkResolver = doc => {
 	switch (doc.type) {
 		case 'page':
-			return `/${doc.uid}`;
+			return `/page/${doc.uid}`;
 	}
 
 	return `/${doc.uid || ''}`;
@@ -22,7 +23,8 @@ export const linkResolver = doc => {
  */
 const componentFromType = async type => {
 	switch (type) {
-
+		case "text_image":
+			return await import("$lib/components/modules/TextImage/TextImage.svelte");
 	}
 
 	if (dev) {
@@ -39,26 +41,7 @@ const componentFromType = async type => {
  */
 const propsFromType = props => {
 	switch (props.type) {
-		case "text":
-			return props.primary;
-		case "image":
-			return {
-				image: props.primary.image,
-				caption: props.primary.caption
-			}
-		case "links":
-			return {
-				links: props.fields.map(link => ({
-					...expandLinkParams(link.link),
-					label: link.label,
-					description: link.description
-				}))
-			}
-		case "features":
-			return { features: props.fields };
-		case "text_and_quote":
-			return props.primary;
-		case "video":
+		case "text_image":
 			return props.primary;
 	}
 
@@ -91,25 +74,6 @@ export const prismicQuery = async ({query, fetch, ref, variables = {}}) => {
 
 	const data = await client.request(query, variables);
 	return transformData(data, fetch);
-}
-
-export const prismicLoad = async ({query, fetch, ref, variables = {}}) => {
-	try {
-		const data = await prismicQuery({query, fetch, ref, variables});
-
-		return {
-			props: {
-				data
-			}
-		}
-	} catch (error) {
-		console.warn(error);
-
-		return {
-			status: 500,
-			error
-		};
-	}
 }
 
 const expandImageParams = img => (img ? {

@@ -14,3 +14,5 @@ Make sure to choose a fitting repository name. For `mutoco-starter.prismic.io`, 
 This depends entirely on the requirements of the project. Here's the official documentation regarding content-modelling
 in Prismic: https://prismic.io/docs/core-concepts#content-modeling
 
+## Previewing locally
+
