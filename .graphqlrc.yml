@@ -1,0 +1,14 @@
+# With this config we can pull the GraphQL Schema from prismic
+schema:
+  # TODO: Make sure to change the repository name!
+  - https://mutoco-starter.cdn.prismic.io/graphql:
+      customFetch: "codegen-prismic-fetch"
+      method: GET
+extensions:
+  codegen:
+    generates:
+      ./src/lib/graphql/schema.graphql:
+        plugins:
+          - schema-ast
+        config:
+          includeDirectives: true

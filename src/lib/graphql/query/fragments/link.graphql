@@ -1,0 +1,22 @@
+fragment Link on _Linkable {
+	_linkType
+	... on _ExternalLink {
+		url
+		target
+	}
+	... on _FileLink {
+		url
+		title:name
+	}
+	... on _ImageLink {
+		url
+		title:name
+	}
+	... on Page {
+		title_txt:title
+		_meta {
+			uid
+			type
+		}
+	}
+}

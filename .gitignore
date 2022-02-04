@@ -6,3 +6,5 @@ node_modules
 .env
 .env.*
 !.env.example
+/src/lib/graphql/fragmentTypes.json
+/src/lib/graphql/schema.graphql

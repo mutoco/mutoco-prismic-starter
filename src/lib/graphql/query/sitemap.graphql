@@ -1,0 +1,17 @@
+query Sitemap($after:String = null, $types:[String!] = ["page"]) {
+	_allDocuments(after: $after, type_in:$types) {
+		pageInfo {
+			hasNextPage
+			endCursor
+		}
+		pages_e:edges {
+			node {
+				_meta {
+					uid
+					type
+					lastPublicationDate
+				}
+			}
+		}
+	}
+}
