@@ -16,7 +16,9 @@
 		"@graphql-codegen/schema-ast": "^2.4.1",
 		"@graphql-tools/prisma-loader": "6.3.0",
 		"@rollup/plugin-graphql": "^1.1.0",
+		"@rollup/plugin-strip": "^2.1.0",
 		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/adapter-netlify": "^1.0.0-next.44",
 		"@sveltejs/kit": "next",
 		"autoprefixer": "^10.4.2",
 		"codegen-prismic-fetch": "^1.0.5",
@@ -35,6 +37,12 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"easings-css": "^2.1.1"
+		"@poppanator/sveltekit-svg": "^0.2.3",
+		"@prismicio/client": "^6.1.1",
+		"@prismicio/helpers": "^2.1.1",
+		"btoa-lite": "^1.0.0",
+		"cookie": "^0.4.2",
+		"easings-css": "^2.1.1",
+		"js-cookie": "^3.0.1"
 	}
 }

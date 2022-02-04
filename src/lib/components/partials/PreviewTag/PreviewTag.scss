@@ -1,0 +1,19 @@
+@import "mixins";
+
+.PreviewTag {
+	position: fixed;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 100;
+}
+
+.PreviewTag__button {
+	@include blank-button;
+	font-size: 14px;
+	cursor: pointer;
+	background-color: $c_dark;
+	color: $c_light;
+	padding: 8px 16px;
+	border-radius: 0 0 4px 4px;
+}
