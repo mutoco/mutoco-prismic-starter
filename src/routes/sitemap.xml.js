@@ -1,14 +1,12 @@
 import {SitemapStream, streamToPromise} from 'sitemap';
 import {Readable} from 'stream';
 import query from "$lib/graphql/query/sitemap.graphql";
-import {variables} from "$lib/util/variables.js";
 import {linkResolver, prismicQuery} from "$lib/util/prismic.js";
+import {env} from "$lib/util/env.js";
 
+// Add static routes here
 const staticPages = [
-	{ url: '/',  changefreq: 'weekly', priority: 1 },
-	{ url: '/work',  changefreq: 'weekly', priority: 0.9  },
-	{ url: '/agency',  changefreq: 'monthly', priority: 0.9  },
-	{ url: '/magazine',  changefreq: 'weekly', priority: 0.9  }
+	{ url: '/',  changefreq: 'weekly', priority: 1 }
 ];
 
 function getFrequency(timestamp) {
@@ -31,17 +29,15 @@ function getFrequency(timestamp) {
 async function getRef(session) {
 	let ref;
 	if (session && session.previewToken) {
-		ref = {
-			ref: session.previewToken
-		}
+		ref = session.previewToken;
 	} else {
-		const response = await fetch(`https://${variables.prismicRepo}.cdn.prismic.io/api/v2`);
+		const response = await fetch(`https://${env.prismicRepo}.cdn.prismic.io/api/v2`);
 		const json = await response.json();
 
-		ref = json.refs.find(ref => ref.isMasterRef);
+		ref = json.refs.find(ref => ref.isMasterRef)?.ref;
 	}
 
-	return ref?.ref;
+	return ref;
 }
 
 async function loadPages(ref) {
@@ -55,7 +51,7 @@ async function loadPages(ref) {
 			ref,
 			variables: {
 				after,
-				types: ["meta_page", "project", "magazine_post", "magazine_category"]
+				types: ["page"] // The page types to load
 			}
 		});
 
@@ -81,7 +77,7 @@ export async function get({locals}) {
 	const ref = await getRef(locals);
 	const pages = await loadPages(ref);
 
-	const smStream = new SitemapStream({ hostname: variables.basePath });
+	const smStream = new SitemapStream({ hostname: env.basePath });
 	const sitemap = await streamToPromise(Readable.from(staticPages.concat(pages)).pipe(smStream));
 	return {
 		headers: {
