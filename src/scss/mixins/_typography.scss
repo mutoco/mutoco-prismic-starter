@@ -1,0 +1,35 @@
+@use "sass:math";
+
+@import "units";
+
+@function lineHeight($number) {
+	@return round($number * 100) * 0.01;
+}
+
+
+@mixin font-m {
+	font-size: rem(16);
+
+	@include above-mobile {
+		font-size: rem(20);
+	}
+}
+
+@mixin font-s {
+	font-size: rem(14);
+}
+
+@mixin title {
+
+}
+
+@mixin text-normal {
+	@include font-s;
+	font-family: $base-font-family;
+	line-height: 1.5;
+}
+
+@mixin textantialiasing() {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

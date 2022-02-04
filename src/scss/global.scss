@@ -1,0 +1,68 @@
+@use "sass:math";
+@import "variables";
+@import "mixins";
+@import "fonts";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-content-zooming: none; /* Disables zooming */
+	-ms-overflow-style: -ms-autohiding-scrollbar;
+	scroll-behavior: smooth;
+
+	// Calculate the font size in Percent, based on the Browser-Default of 16px
+	font-size: 100% * math.div(strip-units($rem-base), 16);
+}
+
+html,
+body {
+	height: auto;
+	width: 100%;
+	min-height: 100%;
+	padding: 0;
+	margin: 0 auto;
+}
+
+body {
+	@include text-normal;
+	color: $c_dark;
+	background: $c_light;
+	-webkit-tap-highlight-color:  rgba(0, 0, 0, 0);
+	counter-reset: teaser-element;
+}
+
+body,
+input,
+select,
+button,
+textarea {
+	@include textantialiasing;
+}
+
+object {
+	outline: none !important;
+	border: 0 !important;
+	opacity: 0;
+}
+
+img, video {
+	display: block;
+	max-width: 100%;
+}
+
+svg {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+::selection {
+}
+
+::-moz-selection {
+}
+
+@import "typography";

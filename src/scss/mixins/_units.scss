@@ -1,0 +1,54 @@
+@use "sass:math";
+
+@import "../variables";
+
+//---------------------------------------------------------------------------------------------------------------------
+// Mixins
+//---------------------------------------------------------------------------------------------------------------------
+
+@function strip-units($number) {
+	@if (math.is-unitless($number)) {
+		@return $number;
+	} @else {
+		@return math.div($number, $number * 0 + 1);
+	}
+}
+
+@function rem($size){
+	@if (math.compatible($size, 1rem) and not math.is-unitless($size)) {
+		@return $size;
+	} @else {
+		@return math.div(strip-units($size), strip-units($rem-base)) * 1rem;
+	}
+}
+
+@function rvw($size, $vw: $viewport-width) {
+	@return math.div(100vw, $vw) * strip-units($size);
+}
+
+$spaces: (
+	xl: 380,
+	l: 256,
+	m: 120,
+	s: 56
+);
+
+$spaces-mobile: (
+	xl: 200,
+	l: 125,
+	m: 80,
+	s: 24
+);
+
+@mixin space($prop, $size, $dir: 1) {
+	#{$prop}: rem(map-get($spaces-mobile, $size) * $dir);
+
+	@include above-mobile {
+		#{$prop}: rem(map-get($spaces, $size) * $dir);
+	}
+}
+
+@mixin component-gap($size: l) {
+	@include space("margin-top", $size);
+	@include space("margin-bottom", $size);
+}

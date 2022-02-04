@@ -1,0 +1,19 @@
+@use "sass:math";
+
+$basepath: '/' !default;
+
+$viewport-width: 1440;
+$viewport-width-mobile: 375;
+
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size: 14px;
+$base-line-height: 1.25;
+
+// REM base unit multiplier. Set to 10px to make units easier to read
+$rem-base: 10px;
+$z-top: 100;
+
+$grid-cols-desktop: 8;
+$grid-cols-mobile: 4;
+$grid-gap-desktop: 40;
+$grid-gap-mobile: 30;
