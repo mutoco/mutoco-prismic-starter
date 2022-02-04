@@ -19,4 +19,11 @@ fragment Link on _Linkable {
 			type
 		}
 	}
+	... on Home {
+		title_txt:title
+		_meta {
+			uid
+			type
+		}
+	}
 }

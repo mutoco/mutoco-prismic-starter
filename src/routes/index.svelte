@@ -1,5 +1,20 @@
-<h1>Welcome to mutoco Prismic starter</h1>
+<script>
+	export let home;
+</script>
 
-<a href="/about">About page</a>
 
+<h1>{home.title}</h1>
+<div class="richtext">
+	{@html home.lead}
+</div>
+
+<script context="module">
+	export async function load({stuff}) {
+		return {
+			props: {
+				home: stuff.home
+			}
+		}
+	}
+</script>
 

@@ -1,0 +1,17 @@
+#import "./fragments/link.graphql"
+
+query {
+	allHomes(first:1) {
+		pages_e:edges {
+			node {
+				title_txt:title
+				lead_html:lead
+				main_menu {
+					link {
+						...Link
+					}
+				}
+			}
+		}
+	}
+}

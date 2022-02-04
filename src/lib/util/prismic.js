@@ -13,6 +13,8 @@ export const previewSessionCookie = "io.prismic.preview";
  */
 export const linkResolver = doc => {
 	switch (doc.type) {
+		case 'home':
+			return '/';
 		case 'page':
 			return `/${doc.uid}`;
 	}
@@ -86,6 +88,26 @@ export const prismicQuery = async ({query, fetch, ref, variables = {}}) => {
 
 	const data = await client.request(query, variables);
 	return transformData(data, fetch);
+}
+
+/**
+ * Get the current ref, either from session oder by fetching it from the API
+ * @param session - session content
+ * @param fetch – current fetch instance
+ * @returns {Promise<string>}
+ */
+export const getRef = async ({session, fetch}) => {
+	let ref;
+	if (session && session.previewToken) {
+		ref = session.previewToken;
+	} else {
+		const response = await fetch(`https://${env.prismicRepo}.cdn.prismic.io/api/v2`);
+		const json = await response.json();
+
+		ref = json.refs.find(ref => ref.isMasterRef)?.ref;
+	}
+
+	return ref;
 }
 
 const expandImageParams = img => (img ? {

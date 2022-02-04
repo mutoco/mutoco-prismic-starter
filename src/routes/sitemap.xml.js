@@ -1,7 +1,7 @@
 import {SitemapStream, streamToPromise} from 'sitemap';
 import {Readable} from 'stream';
 import query from "$lib/graphql/query/sitemap.graphql";
-import {linkResolver, prismicQuery} from "$lib/util/prismic.js";
+import {getRef, linkResolver, prismicQuery} from "$lib/util/prismic.js";
 import {env} from "$lib/util/env.js";
 
 // Add static routes here
@@ -26,19 +26,6 @@ function getFrequency(timestamp) {
 	return "daily";
 }
 
-async function getRef(session) {
-	let ref;
-	if (session && session.previewToken) {
-		ref = session.previewToken;
-	} else {
-		const response = await fetch(`https://${env.prismicRepo}.cdn.prismic.io/api/v2`);
-		const json = await response.json();
-
-		ref = json.refs.find(ref => ref.isMasterRef)?.ref;
-	}
-
-	return ref;
-}
 
 async function loadPages(ref) {
 	let pages = [];
@@ -74,7 +61,7 @@ async function loadPages(ref) {
 }
 
 export async function get({locals}) {
-	const ref = await getRef(locals);
+	const ref = await getRef({session: locals, fetch});
 	const pages = await loadPages(ref);
 
 	const smStream = new SitemapStream({ hostname: env.basePath });
