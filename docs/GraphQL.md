@@ -161,8 +161,8 @@ Gets transformed to:
     "allHomes": {
         "pages": [
             {
-				…
-			}
+                …
+            }
         ]
     }
 }
@@ -176,21 +176,21 @@ Take this query as an example:
 
 ```graphql
 query getPage($uid:String!) {
-	page(uid:$uid, lang:"de-ch") {
-		title_txt:title
-		lead_html:lead
-		description_txt:lead
-		_blocks:body {
-			... on PageBodyText_image {
-				type
-				primary {
-					title_txt:title1
-					content_html:content
-					image_img:image
-				}
-			}
-		}
-	}
+    page(uid:$uid, lang:"de-ch") {
+        title_txt:title
+        lead_html:lead
+        description_txt:lead
+        _blocks:body {
+            ... on PageBodyText_image {
+                type
+                primary {
+                    title_txt:title1
+                    content_html:content
+                    image_img:image
+                }
+            }
+        }
+    }
 }
 ```
 
@@ -209,18 +209,18 @@ successfully use it, we need to update the `componentFromType` function to creat
 
 ```javascript
 const componentFromType = async type => {
-	switch (type) {
-		case "text_image":
-			return await import("$lib/components/modules/TextImage/TextImage.svelte");
-		case "video":
-			return await import("$lib/components/modules/Video/Video.svelte");
-	}
+    switch (type) {
+        case "text_image":
+            return await import("$lib/components/modules/TextImage/TextImage.svelte");
+        case "video":
+            return await import("$lib/components/modules/Video/Video.svelte");
+    }
 
-	if (dev) {
-		return await import("$lib/components/modules/Debug/Debug.svelte");
-	}
+    if (dev) {
+        return await import("$lib/components/modules/Debug/Debug.svelte");
+    }
 
-	return null;
+    return null;
 }
 ```
 
@@ -230,16 +230,16 @@ only the needed properties. For example:
 
 ```javascript
 const propsFromType = props => {
-	switch (props.type) {
-		case "text_image":
-			return props.primary;
-		case "video":
+    switch (props.type) {
+        case "text_image":
+            return props.primary;
+        case "video":
             return { 
                 videoUrl: props.primary?.media?.embed_url 
             };
-	}
+    }
 
-	return {type: props.type};
+    return {type: props.type};
 }
 ```
 
@@ -250,15 +250,15 @@ The `_img` suffix can be applied to images and will reduce the data and also cre
 This query in GraphQL `image_img:image` would return something like:
 
 ```json
-	"image_img": {
-		"dimensions": {
-			"width": 2048,
-			"height": 1536
-		},
-		"alt": null,
-		"copyright": null,
-		"url": "https://images.prismic.io/slicemachine-blank/26d81419-4d65-46b8-853e-8ea902e160c1_groovy.png?auto=compress,format"
-	}
+    "image_img": {
+        "dimensions": {
+            "width": 2048,
+            "height": 1536
+        },
+        "alt": null,
+        "copyright": null,
+        "url": "https://images.prismic.io/slicemachine-blank/26d81419-4d65-46b8-853e-8ea902e160c1_groovy.png?auto=compress,format"
+    }
 ```
 
 Which in turn gets transformed to:
