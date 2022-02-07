@@ -4,17 +4,11 @@ Starter for a [SvelteKit](https://kit.svelte.dev) & [Prismic](https://prismic.io
 
 ## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+Create a new project by using the `Use this template` feature in Github.
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+## Set the .env file
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
-
-> Note: the `@next` is temporary
+Create a `.env` file. Just copying/renaming the `.env.example` file should be enough.
 
 ## Developing
 
@@ -27,6 +21,11 @@ npm run dev
 npm run dev -- --open
 ```
 
+## Using Prismic and their GraphQL API
+
+- [Information about Prismic](./docs/Prismic.md)
+- [Information about the GraphQL API and Data-Transforms](./docs/GraphQL.md)
+
 ## Building
 
 To create a production version of your app:
@@ -37,4 +36,7 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment.
+
+## Deploying
+
+- [ ] TODO: Add information about Netlify deployment

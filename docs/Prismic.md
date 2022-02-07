@@ -21,3 +21,43 @@ Screenshot:
 
 ![Local Preview Settings](./assets/create-preview.png)
 
+## Resolving links
+
+As soon as you start building content-types in prismic that match one of your SvelteKit routes (as we do here with the `[slug].svelte` route),
+you need a way to tell which prismic type matches which route.
+
+Imagine you have 3 different types in Prismic, with 3 matching routes in SvelteKit:
+
+| Type    | Route                    |
+| ------- | ------------------------ |
+| news    | `/news/[slug].svelte`    |
+| blog    | `/blog/[slug].svelte`    |
+| product | `/product/[slug].svelte` |
+
+In order for the frontend to know which type maps to which route, you need to create a `linkResolver` that maps the `type`.
+Here's how the linkResolver would look for the above setup:
+
+```javascript
+export const linkResolver = doc => {
+	switch (doc.type) {
+		case 'news':
+			return `/news/${doc.uid}`;
+		case 'blog':
+			return `/blog/${doc.uid}`;
+		case 'product':
+			return `/product/${doc.uid}`;
+	}
+
+	return `/${doc.uid || ''}`;
+};
+```
+
+The `doc` data is something you'll get via the Prismic API. In GraphQL it's:
+
+```graphql
+_meta {
+	uid
+	type
+}
+```
+

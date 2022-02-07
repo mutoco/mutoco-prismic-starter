@@ -4,17 +4,18 @@
 	export let home;
 </script>
 
-<MetaTags
-	title={home.title}
-	description={home.description}
-	imageUrl={home?.image?.url}
-/>
+{#if home}
+	<MetaTags
+		title={home.title}
+		description={home.description}
+		imageUrl={home?.image?.url}
+	/>
 
-
-<h1>{home.title}</h1>
-<div class="richtext">
-	{@html home.lead}
-</div>
+	<h1>{home.title}</h1>
+	<div class="richtext">
+		{@html home.lead}
+	</div>
+{/if}
 
 <script context="module">
 	export async function load({stuff}) {
