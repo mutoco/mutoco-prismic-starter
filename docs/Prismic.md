@@ -39,16 +39,16 @@ Here's how the linkResolver would look for the above setup:
 
 ```javascript
 export const linkResolver = doc => {
-	switch (doc.type) {
-		case 'news':
-			return `/news/${doc.uid}`;
-		case 'blog':
-			return `/blog/${doc.uid}`;
-		case 'product':
-			return `/product/${doc.uid}`;
-	}
+    switch (doc.type) {
+        case 'news':
+            return `/news/${doc.uid}`;
+        case 'blog':
+            return `/blog/${doc.uid}`;
+        case 'product':
+            return `/product/${doc.uid}`;
+    }
 
-	return `/${doc.uid || ''}`;
+    return `/${doc.uid || ''}`;
 };
 ```
 
@@ -56,8 +56,8 @@ The `doc` data is something you'll get via the Prismic API. In GraphQL it's:
 
 ```graphql
 _meta {
-	uid
-	type
+    uid
+    type
 }
 ```
 

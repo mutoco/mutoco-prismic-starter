@@ -56,14 +56,14 @@ Take this query that loads the title and lead from one Homepage.
 
 ```graphql
 query {
-	allHomes(first:1) {
-		pages_e:edges {
-			node {
-				title_txt:title
-				lead_html:lead
-			}
-		}
-	}
+    allHomes(first:1) {
+        pages_e:edges {
+            node {
+                title_txt:title
+                lead_html:lead
+            }
+        }
+    }
 }
 ```
 
@@ -71,52 +71,52 @@ Querying the API with this returns the following Data:
 
 ```json
 {
-	"data": {
-		"allHomes": {
-			"pages_e": [
-				{
-					"node": {
-						"title_txt": [
-							{
-								"type": "heading1",
-								"text": "Mutoco Prismic Starter",
-								"spans": []
-							}
-						],
-						"lead_html": [
-							{
-								"type": "paragraph",
-								"text": "Welcome to the Prismic starter project.",
-								"spans": []
-							},
-							{
-								"type": "paragraph",
-								"text": "This is the Home-Page. It also contains some \"global\" fields, such as the Main Menu Links",
-								"spans": [
-									{
-										"start": 12,
-										"end": 21,
-										"type": "hyperlink",
-										"data": {
-											"id": "Yf2ATBEAACwATWL9",
-											"type": "home",
-											"tags": [],
-											"slug": "home",
-											"lang": "de-ch",
-											"first_publication_date": "2022-02-04T19:36:48+0000",
-											"last_publication_date": "2022-02-07T08:38:18+0000",
-											"link_type": "Document",
-											"isBroken": false
-										}
-									}
-								]
-							}
-						]
-					}
-				}
-			]
-		}
-	}
+    "data": {
+        "allHomes": {
+            "pages_e": [
+                {
+                    "node": {
+                        "title_txt": [
+                            {
+                                "type": "heading1",
+                                "text": "Mutoco Prismic Starter",
+                                "spans": []
+                            }
+                        ],
+                        "lead_html": [
+                            {
+                                "type": "paragraph",
+                                "text": "Welcome to the Prismic starter project.",
+                                "spans": []
+                            },
+                            {
+                                "type": "paragraph",
+                                "text": "This is the Home-Page. It also contains some \"global\" fields, such as the Main Menu Links",
+                                "spans": [
+                                    {
+                                        "start": 12,
+                                        "end": 21,
+                                        "type": "hyperlink",
+                                        "data": {
+                                            "id": "Yf2ATBEAACwATWL9",
+                                            "type": "home",
+                                            "tags": [],
+                                            "slug": "home",
+                                            "lang": "de-ch",
+                                            "first_publication_date": "2022-02-04T19:36:48+0000",
+                                            "last_publication_date": "2022-02-07T08:38:18+0000",
+                                            "link_type": "Document",
+                                            "isBroken": false
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
 }
 ```
 
@@ -142,15 +142,15 @@ See the query example above, where:
 
 ```json
 {
-	"allHomes": {
-		"pages_e": [
-			{
-				"node": {
-					…
-				}
-			}
-		]
-	}
+    "allHomes": {
+        "pages_e": [
+            {
+                "node": {
+                    …
+                }
+            }
+        ]
+    }
 }
 ```
 
