@@ -6,13 +6,12 @@
 </script>
 
 {#key page}
-	<MetaTags
-		title={page.title}
-		description={page.description}
-		imageUrl={page?.image?.url}
-	/>
-
 	{#if page}
+		<MetaTags
+			title={page.title}
+			description={page.description}
+			imageUrl={page?.image?.url}
+		/>
 		<article>
 			<h1>{page.title}</h1>
 			<div class="richtext">
