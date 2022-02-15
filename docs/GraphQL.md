@@ -12,7 +12,7 @@ This package contains helpers to pull the GraphQL Schema from Prismic. Use the f
 pull the current Schema:
 
 ```shell
-npm run grapqhl:pullSchema
+npm run graphql:pullSchema
 ```
 
 ## The prismic-ref header
