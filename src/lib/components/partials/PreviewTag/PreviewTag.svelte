@@ -19,7 +19,7 @@
 <style lang="scss" src="./PreviewTag.scss"/>
 
 <aside class="PreviewTag">
-	{#if $session.token}
+	{#if $session.previewToken}
 		<button class="PreviewTag__button" on:click={clearSession}>
 			Exit preview
 		</button>

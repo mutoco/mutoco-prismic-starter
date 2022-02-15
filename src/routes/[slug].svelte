@@ -29,7 +29,7 @@
 	import {prismicQuery} from "$lib/util/prismic.js";
 	import query from "$lib/graphql/query/getPage.graphql";
 
-	export async function load({params, stuff}) {
+	export async function load({params, stuff, fetch}) {
 		try {
 			const ref = stuff.prismicRef;
 

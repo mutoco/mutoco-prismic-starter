@@ -3,7 +3,7 @@ import {previewSessionCookie} from "$lib/util/prismic.js";
 
 export async function getSession({ locals }) {
 	return {
-		token: locals.previewToken
+		previewToken: locals.previewToken
 	};
 }
 

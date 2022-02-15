@@ -16,12 +16,12 @@
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get("token");
 
-		// This generates the URL of the preview document
-        const redirect = await client.resolvePreviewURL({
+        Cookies.set(previewSessionCookie, token, { expires: 1 });
+
+		// This generates the URL of the preview document and redirects
+        location.href = await client.resolvePreviewURL({
 			linkResolver,
 			defaultURL: "/"
 		});
-        Cookies.set(previewSessionCookie, token, { expires: 1 });
-        location.href = redirect;
     })
 </script>

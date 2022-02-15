@@ -4,7 +4,7 @@ import {env} from "$lib/util/env.js";
 import {asHTML, asText} from "@prismicio/helpers";
 import {browser, dev} from "$app/env";
 
-export const previewSessionCookie = "io.prismic.preview";
+export const previewSessionCookie = "mutoco.prismic.preview";
 
 /**
  * Resolve a doc to a link. Check doc.type and return the appropriate route
@@ -51,7 +51,7 @@ const propsFromType = props => {
 			return props.primary;
 	}
 
-	return {type: props.type};
+	return {type: props.type || props.__typename};
 }
 
 /**
